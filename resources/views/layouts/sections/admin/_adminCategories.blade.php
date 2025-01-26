@@ -6,7 +6,7 @@
     <div class="bg-green-500  text-white p-4 mt-4 rounded mb-4">
         {{ session('success') }}
     </div>
-@endif
+    @endif
 </div>
 
     <div class="flex flex-col md:flex-row mx-6 mb-4 justify-between items-center mt-4">
