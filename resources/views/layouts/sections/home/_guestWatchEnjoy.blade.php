@@ -3,7 +3,7 @@
 <div class="relative flex flex-col">
     <div class="min-h-28">
        <div class="mx-auto py-4">
-          <h2 class="font-black text-center text-7xl text-white uppercase">
+          <h2 class="font-black text-center text-7xl text-white ">
              İzleyip Keyfini Çıkarın
           </h2>
           <div class="gap-6 mt-8 mx-4 md:flex">

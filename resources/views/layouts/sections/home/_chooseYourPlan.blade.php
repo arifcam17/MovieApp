@@ -1,7 +1,7 @@
 {{-- choose your plan --}}
 
     <div class="mx-3">
-        <h2 class="font-black md:text-7xl text-5xl text-white py-8 text-center uppercase">
+        <h2 class="font-black md:text-7xl text-5xl text-white py-8 text-center ">
            Planınızı Seçiniz
         </h2>
         <div class="flex justify-between lg:flex-row flex-col gap-6 mt-8 items-center">
@@ -9,7 +9,7 @@
            <div class="bg-white p-8 flex flex-col rounded-lg w-full h-96">
               <div>
                  <h2 class="text-lg font-semibold mb-4 text-gray-800">Aylık Plan</h2>
-                 <div class="text-4xl font-bold text-gray-800 mb-6">$9.99</div>
+                 <div class="text-4xl font-bold text-gray-800 mb-6">$10</div>
                  <ul class="space-y-3 mb-6">
                     <li class="flex items-center text-gray-700">
                        <i class="icon-Check w-5 h-5 text-green-500 mr-2 text-xl"></i>
@@ -35,7 +35,7 @@
               <div>
                  <h2 class="text-lg mb-4 font-semibold">Yıllık Plan</h2>
 
-                 <div class="text-4xl font-bold mb-6">$50</div>
+                 <div class="text-4xl font-bold mb-6">$100</div>
                  <ul class="space-y-3 mb-6">
                     <li class="flex items-center">
                      <i class="icon-Check w-5 h-5 text-green-500 mr-2 text-xl"></i>

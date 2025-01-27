@@ -3,8 +3,8 @@
 @section('description', 'test.')
 @section('keywords', 'test, test, test')
 @section('content')
-<section class="relative z-10 py-10">
- <div class="bg-third absolute left-0 top-0 z-[-1] h-full w-1/4"></div>
+<section class="relative z-10 ">
+
  <div class="container mx-auto">
   <div class="bg-white">
    <div class="flex flex-wrap items-stretch">

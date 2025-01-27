@@ -3,7 +3,7 @@
 <style>
    [x-cloak] { display: none; }
 </style>
-   
+
 
     <footer class="bg-primary relative z-5 overflow-hidden mt-16 pt-10">
         <div class="container mx-auto">
@@ -17,24 +17,25 @@
                      En iyi filmleri izletmek için buradayız.
                      Keyifli seyirler! 🎬🍿
                     </p>
-                    <div class="flex items-center">
-                       <a href="javascript:void(0)" class="px-3 text-[#dddddd] hover:opacity-30">
-                          <i class="icon-Facebook text-[18px] leading-none w-[10px] h-[18px] z-[1] text-current"></i>
-                          <!-- Facebook SVG -->
-                       </a>
-                       <a href="javascript:void(0)" class="px-3 text-[#dddddd] hover:opacity-30">
-                          <i class="icon-Twitter text-[18px] leading-none w-[10px] h-[18px] text-current"></i>
-                          <!-- Twitter SVG -->
-                       </a>
-                       <a href="javascript:void(0)" class="px-3 text-[#dddddd] hover:opacity-30">
-                          <i class="icon-Instagram text-[18px] leading-none w-[10px] h-[18px] text-current"></i>
-                          <!-- Instagram SVG -->
-                       </a>
-                       <a href="javascript:void(0)" class="px-3 text-[#dddddd] hover:opacity-30">
-                          <i class="icon-LinkedIn text-[18px] leading-none w-[10px] h-[18px] text-current"></i>
-                          <!-- LinkedIn SVG -->
-                       </a>
+                   <div class="flex items-center">
+                        <a href="https://www.facebook.com/istkaorgtr/" class="px-3 text-[#dddddd] hover:opacity-30">
+                            <i class="icon-Facebook text-[18px] leading-none w-[10px] h-[18px] z-[1] text-current"></i>
+                            <!-- Facebook SVG -->
+                        </a>
+                        <a href="https://x.com/istkaorgtr" class="px-3 text-[#dddddd] hover:opacity-30">
+                            <i class="icon-Twitter text-[18px] leading-none w-[10px] h-[18px] text-current"></i>
+                            <!-- Twitter SVG -->
+                        </a>
+                        <a href="https://www.instagram.com/istkaorgtr/" class="px-3 text-[#dddddd] hover:opacity-30">
+                            <i class="icon-Instagram text-[18px] leading-none w-[10px] h-[18px] text-current"></i>
+                            <!-- Instagram SVG -->
+                        </a>
+                        <a href="https://www.linkedin.com/company/yetenek-i%CC%87stanbul/posts/" class="px-3 text-[#dddddd] hover:opacity-30">
+                            <i class="icon-LinkedIn text-[18px] leading-none w-[10px] h-[18px] text-current"></i>
+                            <!-- LinkedIn SVG -->
+                        </a>
                     </div>
+
                  </div>
               </div>
               <div class="w-full px-4 sm:w-1/2 lg:w-3/12 xl:w-2/12">
