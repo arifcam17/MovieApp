@@ -11,11 +11,12 @@
 
 @push('scripts')
     <script>
+        // Değişkenler atanıyor
         const video = document.querySelector(".video");
         const toggleButton = document.querySelector(".toggleButton");
         const progress = document.querySelector(".progress");
         const progressBar = document.querySelector(".progress__filled");
-        const sliders = document.querySelectorAll(".controls__slider");
+        const slider = document.querySelector(".controls__slider");
         const skipBtns = document.querySelectorAll("[data-skip]");
         const time = document.querySelector(".time");
         const time2 = document.querySelector(".time2");
@@ -34,6 +35,8 @@
         let hideControlsTimeout;
         let lastCall = 0;
 
+
+        // Kontrolleri göster
         function showControls() {
             clearTimeout(hideControlsTimeout);
 
@@ -43,6 +46,7 @@
             document.querySelector(".time_skipR").style.visibility = "visible";
         }
 
+        // Kontrolleri gizle
         function hideControls() {
             if (!isPaused && !isMouseOver) {
                 document.querySelector(".controls").style.visibility = "hidden";
@@ -52,6 +56,7 @@
             }
         }
 
+        // Videoyu başlat ve durdur fonksiyonu
         function togglePlay() {
             if (video.paused || video.ended) {
                 video.play();
@@ -63,6 +68,30 @@
                 showControls();
             }
         }
+
+        // Video oynatıldığında ve durduğunda kontrolleri gizle
+        video.addEventListener("play", () => {
+            isPaused = false;
+            hideControls();
+        });
+
+        // Video durduğunda kontrolleri göster
+        video.addEventListener("pause", () => {
+            isPaused = true;
+            showControls();
+        });
+
+        // mouse video player üzerindeyken kontrolleri göster fonksiyonunu çalıştırır
+        video_player.addEventListener("mouseover", () => {
+            isMouseOver = true;
+            showControls();
+        });
+
+        // mouse video player üzerinden çıktığında kontrolleri gizle fonksiyonunu çalıştırır
+        video_player.addEventListener("mouseout", () => {
+            isMouseOver = false;
+            hideControls();
+        });
 
         function saveProgress() {
             const progress = Math.floor(video.currentTime); // İzlenilen süre (saniye)
@@ -90,25 +119,6 @@
             }
         }
 
-        video.addEventListener("play", () => {
-            isPaused = false;
-            hideControls();
-        });
-
-        video.addEventListener("pause", () => {
-            isPaused = true;
-            showControls();
-        });
-
-        video_player.addEventListener("mouseover", () => {
-            isMouseOver = true;
-            showControls();
-        });
-
-        video_player.addEventListener("mouseout", () => {
-            isMouseOver = false;
-            hideControls();
-        });
 
         // Blob URL
         let xhr = new XMLHttpRequest();
@@ -128,112 +138,128 @@
         }
         xhr.send();
 
-        //zaman update'i
+        //Zaman update'i
         function timeUpdate() {
-            const minutes = Math.floor(video.currentTime / 60);
-            const seconds = Math.floor(video.currentTime % 60);
-            time.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            const minutes = Math.floor(video.currentTime / 60); // dakikayı bulmak için olan zamanı 60'a bölüyoruz
+            const seconds = Math.floor(video.currentTime % 60); // saniye'yi bulmak için olan zamanı 60'a bölümünden kalanı alıyoruz
+            time.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`; //minutes ile seconds değişkenini yazdırıyor seconds değişkenini 2 haneli olana kadar başına 0 yazılıyor
 
-            const remainingTime = video.duration - video.currentTime;
-            const remainingMinutes = Math.floor(remainingTime / 60);
-            const remainingSeconds = Math.floor(remainingTime % 60);
-            time2.innerHTML = `${remainingMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+            const remainingTime = video.duration - video.currentTime; // video süresinden geçen süreyi çıkararak kalan süreyi buluyoruz
+            const remainingMinutes = Math.floor(remainingTime / 60); // kalan dakikayı bulmak için kalan zamanı 60'a bölüyoruz
+            const remainingSeconds = Math.floor(remainingTime % 60); // kalan saniyeyi bulmak için kalan zamanı 60'a bölümünden kalanı alıyoruz
+            time2.innerHTML = `${remainingMinutes}:${remainingSeconds.toString().padStart(2, '0')}`; // remainingMinutes ile remainingSeconds değişkenini yazdırıyor remainingSeconds değişkenini 2 haneli olana kadar başına 0 yazılıyor
         }
         video.addEventListener("timeupdate", timeUpdate);
 
-        //Başlatma ve durdurma butonu
+        //Başlatma ve durdurma butonu güncelleme
         function updateToggleButton() {
             toggleButton.innerHTML = video.paused ? '<i class="icon-Play"></i>' : '<i class="icon-Pause"></i>';
         }
 
+
         function handleProgress() {
-            const progressPercentage = (video.currentTime / video.duration) * 100;
-            progressBar.style.flexBasis = `${progressPercentage}%`;
+            const progressPercentage = (video.currentTime / video.duration) * 100; // video şu anki süresini kalan süreye bölüp 100 ile çaraparak videonun ne kadar ilerlediğinin yüzdesi bulunur
+            progressBar.style.flexBasis = `${progressPercentage}%`; // progress barın genişliğini belirler
         }
 
         function scrub(e) {
-            const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
-            video.currentTime = scrubTime;
+            const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration; // tıklanan yerin genişliğe oranını alıp video süresi ile çarparak tıklanan yerdeki süreyi bulur
+            video.currentTime = scrubTime; // videoyu tıklanan yerdeki süreden başlatır
         }
 
         function handleSliderUpdate() {
-            video[this.name] = this.value;
+            video[this.name] = this.value; // slider'ın ismine göre o slider'ın değerini değiştirir
         }
 
-        function handleSkip() {
-            video.currentTime += +this.dataset.skip;
-        }
 
-        toggleButton.addEventListener("click", togglePlay);
+        // Event Listeners
+        toggleButton.addEventListener("click", togglePlay);  // toggle butonuna basınca togglePlay fonksiyonunu çalıştır
 
-        video.addEventListener("click", togglePlay);
-        video.addEventListener("play", updateToggleButton);
+        video.addEventListener("click", togglePlay); // video'ya tıklayınca togglePlay fonksiyonunu çalıştır
+        video.addEventListener("play", updateToggleButton);  // video başladığında ve durduğunda updateToggleButton fonksiyonunu çalıştır
         video.addEventListener("pause", updateToggleButton);
-        video.addEventListener("timeupdate", handleProgress);
+        video.addEventListener("timeupdate", handleProgress); // video ilerledikçe handleProgress fonksiyonunu çalıştır
         video.addEventListener("pause", saveProgress); // Durdurulduğunda kaydet
         video.addEventListener("timeupdate", throttleSaveProgress); // İzlerken periyodik kaydet
-        progress.addEventListener("click", scrub);
+        progress.addEventListener("click", scrub);   // videonun progress barına tıklayınca scrub fonksiyonunu çalıştır
 
-        sliders.forEach((slider) => {
-            slider.addEventListener("change", handleSliderUpdate);
-        });
+        slider.addEventListener("change", handleSliderUpdate); // her bir slider için handleSliderUpdate fonksiyonunu çalıştır slider her hareket edilip bırakıldığında değeri değişicek
+
+
+        function handleSkip() {
+            video.currentTime += +this.dataset.skip; // tıklanan butonun data-skip değerini alıp video süresine ekler
+        }
 
         skipBtns.forEach((btn) => {
-            btn.addEventListener("click", handleSkip);
+            btn.addEventListener("click", handleSkip); // her bir skipBtns butonuna tıklandığında handleSkip fonksiyonunu çalıştır
         });
 
-        let mousedown = false;
 
-        sliders.forEach((slider) => {
-            slider.addEventListener("change", handleSliderUpdate);
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space') event.preventDefault(); // Space tusuna basıldığında sayfanın aşağıya kaymasını durdurur
         });
 
         document.addEventListener("keydown", (e) => {
-            if (e.code === "Space") togglePlay();
+            if (e.code === "Space") togglePlay(); // Space tuşuna basınca togglePlay fonksiyonunu çalıştır
         });
 
 
         // Tam Ekran
         function openFullscreen() {
-            if (video_player.requestFullscreen) {
-                if (document.fullscreenElement) {
+            if (video_player.requestFullscreen)
+            {
+                // Standart fullscreen chrome
+                if (document.fullscreenElement)
+                {
                     document.exitFullscreen();
                     fullscreenButton.classList.remove('icon-compress');
                     fullscreenButton.classList.add('icon-expand');
-                } else {
+                }
+                else
+                {
                     video_player.requestFullscreen();
                     fullscreenButton.classList.remove('icon-expand');
                     fullscreenButton.classList.add('icon-compress');
                 }
             } else if (video_player.webkitRequestFullscreen) {
-                /* Safari için*/
-                if (document.webkitFullscreenElement) {
+                // Safari için
+                if (document.webkitFullscreenElement)
+                {
                     document.webkitExitFullscreen();
                     fullscreenButton.classList.remove('icon-compress');
                     fullscreenButton.classList.add('icon-expand');
-                } else {
+                }
+                else
+                {
                     video_player.webkitRequestFullscreen();
                     fullscreenButton.classList.remove('icon-expand');
                     fullscreenButton.classList.add('icon-compress');
                 }
             } else if (video_player.msRequestFullscreen) {
-                /* IE11 için*/
-                if (document.msFullscreenElement) {
+                // IE11 için
+                if (document.msFullscreenElement)
+                {
                     document.msExitFullscreen();
                     fullscreenButton.classList.remove('icon-compress');
                     fullscreenButton.classList.add('icon-expand');
-                } else {
+                }
+                else
+                {
                     video_player.msRequestFullscreen();
                     fullscreenButton.classList.remove('icon-expand');
                     fullscreenButton.classList.add('icon-compress');
                 }
-            } else if (videoElement.mozRequestFullScreen) { // Firefox
-                if (document.mozRequestFullScreenElement) {
+            } else if (video_player.mozRequestFullScreen) {
+                // Firefox için
+                if (document.mozRequestFullScreenElement)
+                {
                     document.mozCancelFullScreen();
                     fullscreenButton.classList.remove('icon-compress');
                     fullscreenButton.classList.add('icon-expand');
-                } else {
-                    videoElement.mozRequestFullScreen();
+                }
+                else
+                {
+                    video_player.mozRequestFullScreen();
                     fullscreenButton.classList.remove('icon-expand');
                     fullscreenButton.classList.add('icon-compress');
                 };
@@ -256,16 +282,11 @@
                 const dropdown = document.querySelector('.dropdown');
                 dropdown.classList.remove('open');
 
-                // Seçili seçeneği parlak yap
+                // Önceki seçiliği sil ve yeni seçeneği seçili yap
                 dropdownItems.forEach(i => i.classList.remove('selected'));
                 e.target.classList.add('selected');
             });
         });
-
-                function toggleDropdown() {
-                    const dropdown = document.querySelector(".dropdown");
-                    dropdown.classList.toggle("open");
-                }
 
         function toggleDropdown() {
             const dropdown = document.querySelector('.dropdown');
@@ -279,7 +300,7 @@
             if (!isNaN(speed)) {
                 video.playbackRate = speed;
             } else {
-                console.error("Invalid speed value:", speed);
+                console.error("Geçersiz ses değeri:", speed);
             }
 
             // seçilmiş seçeneği güncelle
@@ -293,15 +314,34 @@
             dropdown.classList.remove('open');
         }
 
-        function toggleSubtitles() {
-          const video = document.getElementById('myVideo');
-          const track = video.textTracks[0];
+          // Altyazıları açma ve kapatma
+          function toggleSubtitles() {
+          const track = video.textTracks[0]; // videonun İlk altyazı parçasını alır
 
-          if (track.mode === 'showing') {
+          if (track.mode === 'showing') // altyazılar gösteriliyorsa gizler
+            {
               track.mode = 'hidden';
-          } else {
+            }
+            else // altyazılar gizliyse gösterir
+            {
               track.mode = 'showing';
-          }
-  }
+            }
+        }
+
+        // Mouse hareketlerinde controls kısımlarını gizler
+            document.addEventListener('mousemove', function() {
+            const controls = document.querySelectorAll('.toggleButton, .time_skipL, .time_skipR, .controls');
+            controls.forEach(control => {
+                control.style.opacity = '1';
+            });
+
+            clearTimeout(window.controlsTimeout);
+            window.controlsTimeout = setTimeout(function() {
+                controls.forEach(control => {
+                    control.style.opacity = '0';
+                });
+            }, 2000); // 2 saniye sonra kontrolleri gizle
+            });
+
    </script>
 @endpush

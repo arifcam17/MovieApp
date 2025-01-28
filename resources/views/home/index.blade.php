@@ -22,7 +22,14 @@
                 @vite(['resources/js/swiper.js','resources/js/toggleFavorite.js', 'resources/js/sliders.js'])
             @endpush
         @else
-            <p class="text-white text-2xl flex justify-center items-center h-screen">Ödeme yapmadınız. Lütfen ödeme yapınız.</p>
+             <div class="text-white text-2xl flex flex-col justify-center items-center h-screen">
+                <p>Ödeme yapmadınız. Lütfen ödeme yapınız.</p>
+                <a href="{{ route('payment') }}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded mt-4">
+                    Ödeme Ekranına Dön
+
+                    
+                </a>
+            </div>
         @endif
     @endauth
 

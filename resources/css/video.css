@@ -1,38 +1,20 @@
-
-*, *:before, *:after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  .video-player {
+    /* video player olduğu div'in css'i */
+    .video-player
+    {
     position: relative;
-    width: 100%;
-    height: 100%;
-}
+    }
 
-.progress {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin: 0 10px;
-}
-
-.progress__filled {
-    height: 5px;
-}
-
-  .controls__slider {
+    /* ses slider'ın class'ı */
+    .controls__slider
+    {
     width: 10px ;
     height: 30px;
-  }
-
-  .sounds{
     max-width: 120px;
-  }
+    }
 
-  .controls {
+    /* video player'ın control panelinin css'i */
+    .controls
+    {
     display: flex;
     position: absolute;
     bottom: 0;
@@ -42,48 +24,61 @@
     transform: translateY(0);
     padding-left: 10px;
     padding-right: 10px;
-  }
+    }
 
-  .controls > * {
+    /* video player'ın controllerinin css'i controls class'ının çocuklarına uygulanacak */
+    .controls > *
+    {
     flex: 1;
-  }
-  .progress {
-    flex: 10;
-    position: relative;
-    display: flex;
-    flex-basis: 100%;
-    height: 5px;
-    background: rgba(255,255,255,0.5);
-    cursor: pointer;
-    height: 15px;
-  }
-  .progress__filled {
-    width: 50%;
-    background: red;
-    flex: 0;
-    flex-basis: 0%;
-  }
+    }
 
-    input[type=range] {
+    /*  progress barın css'i */
+    .progress
+    {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex: 1 1 100%;
+    margin: 0 10px;
+    background: rgba(255,255,255,0.5);
+    height: 15px;
+    }
+
+    /* progress barın dolma css'i */
+    .progress__filled
+    {
+    height: 5px;
+    background: red;
+    }
+
+    /* ses ayarlarının slider'ı */
+    input[type=range]
+    {
     -webkit-appearance: none;
     background: transparent;
     width: auto;
     margin: 0 5px;
-  }
+    }
 
-  input[type=range]:focus {
+    /* slider focuslandığında outline'ı yok ediyor */
+    input[type=range]:focus
+    {
     outline: none;
-  }
+    }
 
-  input[type=range]::-webkit-slider-runnable-track {
+    /*  webkit tabanlı taracılar için slider'ın arka tarafı*/
+    input[type=range]::-webkit-slider-runnable-track
+    {
     width: 100%;
     height: 8.4px;
     cursor: pointer;
     background: rgba(255,255,255,0.8);
     border-radius: 4px;
-  }
+    }
 
-  input[type=range]::-webkit-slider-thumb {
+    /*  webkit tabanlı taracılar için slider'ın çekildiği kısmı */
+    input[type=range]::-webkit-slider-thumb
+    {
     height: 0.9rem;
     width: 0.9rem;
     border-radius: 50px;
@@ -91,17 +86,21 @@
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -3.5px;
-  }
+    }
 
-  input[type=range]::-moz-range-track {
+    /*  mozilla tabanlı taracılar için slider'ın arka tarafı */
+    input[type=range]::-moz-range-track
+    {
     width: 100%;
     height: 8.4px;
     cursor: pointer;
     background: rgba(255,255,255,0.8);
     border-radius: 4px;
-  }
+    }
 
-  input[type=range]::-moz-range-thumb {
+    /*  mozilla tabanlı taracılar için slider'ın çekildiği kısmı */
+    input[type=range]::-moz-range-thumb
+    {
     height: 0.9rem;
     width: 0.9rem;
     border-radius: 50px;
@@ -109,22 +108,29 @@
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -3.5px;
-  }
+    }
 
+    /* ilerleyen zamanı gösteren label'ın css'i */
     .time
     {
     margin-top: 3px;
     flex: 0 0 20px;
+    color: white;
+    width: 10px;
     }
 
+    /* kalan zamanı gösteren label'ın css'i */
     .time2
     {
     margin-top: 3px;
     flex: 0 0 20px;
-
+    color: white;
+    margin-top:0;
     }
 
-    .toggleButton{
+    /* play-pause butonunu'nun css'i */
+    .toggleButton
+    {
     position: absolute;
     top: 43%;
     left: 48%;
@@ -143,7 +149,9 @@
     line-height: 0;
     }
 
-    .time_skipL{
+    /* 10 saniye geriye alma butonunun css'i */
+    .time_skipL
+    {
     position: absolute;
     top: 43%;
     left: 15%;
@@ -162,7 +170,9 @@
     line-height: 0;
     }
 
-    .time_skipR{
+    /* 10 saniye ileriye alma butonunun css'i */
+    .time_skipR
+    {
     position: absolute;
     top: 43%;
     right: 15%;
@@ -181,17 +191,7 @@
     line-height: 0;
     }
 
-  .playbackRate{
-    max-width: 100px;
-  }
-
-  select.playbackRate {
-    color: rgb(172, 16, 16);
-  }
-  select.playbackRate option {
-    color: rgb(172, 16, 16);
-  }
-
+    /* hız ayarlamadaki dropdown'un css'i */
     .dropdown-menu {
     position: absolute;
     background-color: white;
@@ -205,21 +205,30 @@
     z-index: 10;
     }
 
+    /* hız ayarlamadaki dropdown'un içindeki item'ların css'i */
     .dropdown-item {
     padding: 8px;
     cursor: pointer;
     font-size: 14px;
     }
 
+    /* hız ayarlamadaki dropdown'un içindeki item'ların hover css'i */
     .dropdown-item:hover {
     background-color: #f0f0f0;
     }
 
+    /* hız ayarlamadaki dropdown'un içindeki item'ların seçili olduğunda css'i */
     .selected {
     font-weight: bold;
     color: #1D4ED8;
     }
 
+    /* hız ayarlamadaki dropdown'un açık olduğunda css'i */
     .dropdown.open .dropdown-menu {
     display: block;
+    }
+
+    /* kontrol araçlarının opacity'sini değiştiren css */
+    .controls__button, .controls, .dropdown {
+        transition: opacity 0.5s;
     }

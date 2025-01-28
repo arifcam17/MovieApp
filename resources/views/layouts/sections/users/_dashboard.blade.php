@@ -201,8 +201,8 @@
                             <!-- Fotoğraf güncelleme formu -->
                             <form action="{{ route('photo.update') }}" method="POST" enctype="multipart/form-data" class="flex flex-col items-center gap-4">
                                 @csrf
-                                <label for="profile_photo" class="cursor-pointer text-sm text-primary">
-                                    Fotoğrafınızı Değiştirin
+                                <label for="profile_photo" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                    Fotoğrafı Değiştir
                                     <input type="file" class="sr-only" name="profile_photo" id="profile_photo" accept="image/*" onchange="previewImage(event)" />
                                 </label>
                                 <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
